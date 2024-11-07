@@ -1,0 +1,2 @@
+GET https://g8o67t07ya.execute-api.us-east-1.amazonaws.com/dev/api/people/
+Content-Type: application/json

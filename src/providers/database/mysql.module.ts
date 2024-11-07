@@ -9,7 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       imports: [ConfigModule.forRoot({ isGlobal: true })],
       useFactory: async (configService: ConfigService) => {
         const host = configService.get('DATABASE_HOST');
-        console.log({ host });
+        console.log('DATABASE_HOST >>>', host);
 
         return {
           type: 'mysql',

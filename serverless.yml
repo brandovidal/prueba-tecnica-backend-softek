@@ -4,7 +4,7 @@ useDotenv: true
 
 plugins:
   - serverless-offline
-  # - serverless-dotenv-plugin
+  - serverless-dotenv-plugin
 
 build:
   esbuild:
@@ -26,7 +26,7 @@ build:
     # Glob patterns are supported here.
     # exclude:
     #   - '@aws-sdk/*'
-      # - '!@aws-sdk/client-bedrock-runtime'
+    # - '!@aws-sdk/client-bedrock-runtime'
     # The packages config, this can be set to override the behavior of external
     # If this is set then all dependencies will be treated as external and not bundled.
     packages: external
@@ -51,31 +51,6 @@ package:
     - .serverless_plugins/**
   include:
     - .env
-#     - '../../node_modules/@nestjs/common/**'
-#     - '../../node_modules/@nestjs/core/**'
-#     - '../../node_modules/@nestjs/schematics/**'
-#     - '../../node_modules/@nestjs/testing/**'
-#     - '../node_modules/@nestjs/config/**'
-#     - '../../node_modules/tslib/**'
-#     - '../../node_modules/reflect-metadata/**'
-#     - '../../node_modules/uid/**'
-#     - '../../node_modules/rxjs/**'
-#     - '../../node_modules/iterare/**'
-#     - '../../node_modules/@nuxtjs/**'
-#     - '../../node_modules/fast-safe-stringify/**'
-#     - '../../node_modules/path-to-regexp/**'
-#     - '../../node_modules/cache-manager/**'
-#     - '../../node_modules/class-transformer/**'
-#     - '../../node_modules/class-validator/**'
-#     - '../../node_modules/cache-manager/**'
-#     - '../../node_modules/@angular-devkit/**'
-#     - '../../node_modules/jsonc-parser/**'
-#     - '../../node_modules/pluralize/**'
-#     - '../../node_modules/body-parser/**'
-#     - '../../node_modules/cors/**'
-#     - '../../node_modules/express/**'
-#     - '../../node_modules/multer/**'
-#     - '../../node_modules/@vendia/**'
 
 provider:
   name: aws
@@ -85,12 +60,11 @@ provider:
   timeout: 29
   stage: 'dev'
   environment:
-    DATABASE_HOST: ${DATABASE_HOST}
-    DATABASE_PORT: ${DATABASE_PORT}
-    DATABASE_NAME: ${DATABASE_NAME}
-    DATABASE_USER: ${DATABASE_USER}
-    DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-
+    DATABASE_HOST: ${env:DATABASE_HOST}
+    DATABASE_PORT: ${env:DATABASE_PORT}
+    DATABASE_NAME: ${env:DATABASE_NAME}
+    DATABASE_USER: ${env:DATABASE_USER}
+    DATABASE_PASSWORD: ${env:DATABASE_PASSWORD}
 
 functions:
   main:
@@ -99,9 +73,10 @@ functions:
       - http:
           method: ANY
           path: /
+          integration: lambda
           cors: true
       - http:
           method: ANY
           path: '{proxy+}'
+          integration: lambda
           cors: true
-
