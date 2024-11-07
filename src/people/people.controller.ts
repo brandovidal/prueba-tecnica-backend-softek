@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 
 import { PeopleService } from './people.service';
-import { ApiService } from '../providers/http/api.service';
+import { ApiService } from '../providers/api/api.service';
 
 
 import { CreatePersonDto } from './dto/create-person.dto';
