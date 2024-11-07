@@ -13,6 +13,7 @@ import { PeopleService } from './people.service';
 
 import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
+import { Person } from './entities/person.entity';
 
 @Controller('people')
 export class PeopleController {
@@ -22,12 +23,19 @@ export class PeopleController {
   ) {}
 
   @Post()
-  async create(@Body() createPersonDto: CreatePersonDto) {
-    const url = 'https://swapi.py4e.com/api/people/?format=json';
-    const data = await this.apiService.getData(url);
-    console.log(data);
+  async create() {
+    try {
+      const url = 'https://swapi.py4e.com/api/people/?format=json';
+      const people = await this.apiService.getData(url);
 
-    return this.peopleService.create(createPersonDto);
+      const createPersonDto: CreatePersonDto = people.results.map((person) => ({
+        name: person.name,
+      }));
+      return this.peopleService.create(createPersonDto);
+    } catch (error) {
+      console.error(error);
+      throw new Error('Error al obtener los datos de la API');
+    }
   }
 
   @Get()
