@@ -12,10 +12,10 @@ API de prueba SWAPI: https://swapi.py4e.com/documentation
 ## Puntos mínimos-obligatorios del MVP:
 
 - ✅ Mínimo 2 endpoints, GET para recuperar la información y POST para crear un elemento
-- ✅ Integración con una base de datos (DynamoDB o MySQL)
+- ❌ Integración con una base de datos (DynamoDB o MySQL)
 - ✅ Integración con SWAPI
 - ✅ Traducción de atributos de inglés a español
-- ❌ Uso de Serverless Framework
+- ✅ Uso de Serverless Framework
 - ✅ Uso de Node.js
 - ✅ Respeto de las buenas prácticas de desarrollo
 
@@ -25,7 +25,7 @@ API de prueba SWAPI: https://swapi.py4e.com/documentation
 - ✅ Uso de TypeScript
 - ❌ Documentación de uso
 - ❌ Documentación en Open API/Swagger
-- ❌ Desplegar sin errores en AWS con el comando deploy del framework serverless
+- ✅ Desplegar sin errores en AWS con el comando deploy del framework serverless
 - ❌ Mayor complejidad de Integración
 - ✅ Uso de un framework (NestJS)
 - ✅ Trabajar en capas y por dominio
