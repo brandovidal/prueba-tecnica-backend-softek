@@ -12,7 +12,6 @@ import {
 import { PeopleService } from './people.service';
 import { ApiService } from '../../providers/api/api.service';
 
-
 import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
 import { PersonResponseDto } from './dto/person-response.dto';
