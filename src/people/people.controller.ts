@@ -40,7 +40,11 @@ export class PeopleController {
 
   @Get()
   async findAll() {
-    return this.peopleService.findAll();
+    const people = await this.peopleService.findAll();
+    console.log("🚀 ~ PeopleController ~ findAll ~ people:", people)
+
+    const data = people.map((person) => ({ id: person.id, nombre: person.name }));
+    return data;
   }
 
   @Get(':id')
