@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 
 import { PeopleService } from './people.service';
-import { ApiService } from '../providers/api/api.service';
+import { ApiService } from '../../providers/api/api.service';
 
 
 import { CreatePersonDto } from './dto/create-person.dto';
@@ -19,9 +19,9 @@ import { PersonResponseDto } from './dto/person-response.dto';
 
 import { Person } from './entities/person.entity';
 
-import { ResponseMessage } from '../common/decorators/response-message.decorator';
-import { EntityInterceptor } from '../common/serializers/entity.serializer';
-import { Entity } from '../common/decorators/entity.decorator';
+import { ResponseMessage } from '../../common/decorators/response-message.decorator';
+import { EntityInterceptor } from '../../common/serializers/entity.serializer';
+import { Entity } from '../../common/decorators/entity.decorator';
 
 @Controller('people')
 export class PeopleController {
