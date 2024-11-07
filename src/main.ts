@@ -1,24 +1,7 @@
-import { NestFactory, Reflector } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
-
-import { AppModule } from './app.module';
-
-import { ResponseInterceptor } from './common/serializers/response.serializer';
+import { App } from './app';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-
-  app.useGlobalInterceptors(new ResponseInterceptor(app.get(Reflector)));
-
-  app.setGlobalPrefix('api');
-
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true,
-    }),
-  );
+  const app = await App();
 
   await app.listen(process.env.PORT ?? 5000);
 }
