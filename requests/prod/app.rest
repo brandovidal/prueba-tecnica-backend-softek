@@ -1,1 +1,1 @@
-GET https://g8o67t07ya.execute-api.us-east-1.amazonaws.com/dev/api/
+GET https://4wtmk4d8b6.execute-api.us-east-1.amazonaws.com/prod/api/
