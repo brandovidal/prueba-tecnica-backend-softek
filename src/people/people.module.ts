@@ -8,7 +8,7 @@ import { Person } from './entities/person.entity';
 import { PeopleController } from './people.controller';
 
 import { PeopleService } from './people.service';
-import { ApiService } from 'src/utils/api.service';
+import { ApiService } from 'src/providers/http/api.service';
 
 @Module({
   imports: [HttpModule, TypeOrmModule.forFeature([Person])],
