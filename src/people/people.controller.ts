@@ -16,9 +16,9 @@ import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
 import { Person } from './entities/person.entity';
 
-import { ResponseMessage } from 'src/interceptors/response-message.decorator';
-import { SerializeInterceptor } from './shared/serialize.intercerptor';
-import { Serialize } from './shared/serialize.decorator';
+import { ResponseMessage } from 'src/common/decorators/response-message.decorator';
+import { EntityInterceptor } from '../common/serializers/entity.serializer';
+import { Entity } from '../common/decorators/entity.decorator';
 import { PersonResponseDto } from './dto/person-response.dto';
 
 @Controller('people')
@@ -30,7 +30,6 @@ export class PeopleController {
 
   @Post()
   async create() {
-    // try {
     const url = 'https://swapi.py4e.com/api/people/?format=json';
     const people = await this.apiService.getData(url);
 
@@ -38,17 +37,13 @@ export class PeopleController {
       name: person.name,
     }));
     return this.peopleService.create(createPersonDto);
-    // } catch (error) {
-    //   console.error(error);
-    //   throw new Error('Error al obtener los datos de la API');
-    // }
   }
 
   @Get()
-  @Serialize(PersonResponseDto)
+  @Entity(PersonResponseDto)
   @ResponseMessage('People data successfully')
   async findAll() {
-    return await this.peopleService.findAll();;
+    return await this.peopleService.findAll();
   }
 
   @Get(':id')

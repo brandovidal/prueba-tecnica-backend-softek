@@ -9,18 +9,14 @@ export interface ClassContrustor {
   new (...args: any[]): object;
 }
 
-export class SerializeInterceptor implements NestInterceptor {
+export class EntityInterceptor implements NestInterceptor {
   constructor(private dto: ClassContrustor) {}
   intercept(context: ExecutionContext, handler: CallHandler): Observable<any> {
-    // run something before a request is handled by the request handler
-
     return handler.handle().pipe(
       map((data: ClassContrustor) => {
-        // Run something before the response is sent out
-
         return plainToClass(this.dto, data, {
-          excludeExtraneousValues: true, // remove fields that are not in the DTO
-          exposeUnsetFields: false, // remove fields with value of undefined
+          excludeExtraneousValues: true,
+          exposeUnsetFields: false,
         });
       }),
     );

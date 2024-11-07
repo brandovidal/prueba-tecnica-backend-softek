@@ -3,7 +3,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 import { AppModule } from './app.module';
 
-import { ResponseInterceptor } from './interceptors/response.intercerptor';
+import { ResponseInterceptor } from './common/serializers/response.serializer';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
