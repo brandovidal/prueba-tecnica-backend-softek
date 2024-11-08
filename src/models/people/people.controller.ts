@@ -33,6 +33,7 @@ export class PeopleController {
   }
 
   @Post('bulk')
+  @ResponseMessage('Created people successfully')
   async bulk() {
     const url = `${this.swapiApiUrl}/api/people/?format=json`;
     const data = await this.apiService.getData(url);
@@ -49,6 +50,7 @@ export class PeopleController {
   }
 
   @Post('create')
+  @ResponseMessage('Created person successfully')
   async create(@Body() createPersonDto: CreatePersonDto) {
     return this.peopleService.create(createPersonDto);
   }
@@ -61,16 +63,19 @@ export class PeopleController {
   }
 
   @Get(':id')
+  @ResponseMessage('Person data successfully')
   findOne(@Param('id') id: string) {
     return this.peopleService.findOne(Number(id));
   }
 
   @Patch(':id')
+  @ResponseMessage('Updated person successfully')
   update(@Param('id') id: string, @Body() updatePersonDto: UpdatePersonDto) {
     return this.peopleService.update(Number(id), updatePersonDto);
   }
 
   @Delete(':id')
+  @ResponseMessage('Deleted person successfully')
   remove(@Param('id') id: string) {
     return this.peopleService.remove(Number(id));
   }

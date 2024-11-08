@@ -45,7 +45,7 @@ describe('PeopleController', () => {
       expect(controller).toBeDefined();
     });
 
-    it('should return "People create data successfully"', async () => {
+    it('should return "Created person successfully"', async () => {
       const createPersonDto = {
         id: 1,
         name: 'test',
