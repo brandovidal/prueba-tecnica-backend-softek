@@ -1,1 +1,1 @@
-GET https://4wtmk4d8b6.execute-api.us-east-1.amazonaws.com/prod/api/
+GET {{$dotenv API_URL}}/prod/api/
