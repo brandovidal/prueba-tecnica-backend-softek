@@ -125,7 +125,7 @@ Instalar con el plugin de VSCode [REST Client](https://marketplace.visualstudio.
 
 ## 🎉 Pasos para usar el proyecto
 
-1. Primero poblar la base de datos con los personajes de Swapi API, llamar al siguiente endpoint desde el archivo `bulk-create.rest` o con el comando curl:
+1. Primero poblar la base de datos con los personajes de Swapi API, llamar al siguiente endpoint desde el archivo `bulk-create.rest` o con el comando **curl**:
 
 ```bash
 $ curl -X POST http://localhost:3000/api/people/bulk/ -H "Content-Type: application/json"
@@ -171,9 +171,9 @@ Desplegar el proyecto en AWS con Serverless Framework:
 $ pnpm run deploy
 ```
 
-> ⚠️ Importante: Adicionalmente se puede probar los endepoint en la carpeta `requests`
+> ⚠️ Importante: Adicionalmente se puede probar los endpoint en la carpeta `requests`
 
-Despues de desplegar el proyecto, agregar el endpoint (la variable `BASE_API_URL`) en el archivo .env
+Despues de desplegar el proyecto, agregar el endpoint (la variable `BASE_API_URL`) en el archivo .env. Tener en consideración que puede demorar unos segundos en reflejarse el nuevo endpoint.
 
 - `BASE_API_URL`: URL de la API en AWS
 
@@ -186,4 +186,10 @@ Despues de desplegar el proyecto, agregar el endpoint (la variable `BASE_API_URL
 |   |   ├── get-all.rest
 |   ├── app.rest
 └── (...)
+```
+
+Al final las pruebas borrar el serverless creado con el siguiente commando:
+
+```bash
+$ pnpm run deploy:remove
 ```
