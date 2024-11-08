@@ -3,7 +3,6 @@ service: softek-serverless
 useDotenv: true
 
 plugins:
-  - serverless-offline
   - serverless-dotenv-plugin
 
 build:
