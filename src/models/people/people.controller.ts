@@ -33,7 +33,7 @@ export class PeopleController {
   }
 
   @Post('bulk')
-  @ResponseMessage('Created people successfully')
+  @ResponseMessage('People has been successfully created')
   async bulk() {
     const url = `${this.swapiApiUrl}/api/people/?format=json`;
     const data = await this.apiService.getData(url);
@@ -50,7 +50,7 @@ export class PeopleController {
   }
 
   @Post('create')
-  @ResponseMessage('Created person successfully')
+  @ResponseMessage('The person has been successfully created')
   async create(@Body() createPersonDto: CreatePersonDto) {
     return this.peopleService.create(createPersonDto);
   }
