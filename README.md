@@ -181,7 +181,7 @@ $ pnpm run deploy
 
 Despues de desplegar el proyecto, agregar el endpoint (la variable `BASE_API_URL`) en el archivo .env. Tener en consideración que puede demorar unos segundos en reflejarse el nuevo endpoint.
 
-- `BASE_API_URL`: URL de la API en AWS. Ejemplo: `https://ngahyu3u43.execute-api.us-east-1.amazonaws.com/prod/docs`
+- `BASE_API_URL`: URL de la API en AWS. Ejemplo: `https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/docs`
 
 ```css
 ├── requests/
@@ -194,6 +194,35 @@ Despues de desplegar el proyecto, agregar el endpoint (la variable `BASE_API_URL
 └── (...)
 ```
 
+O probar con CURL
+
+1. Primero poblar la base de datos con los personajes de Swapi API, llamar al siguiente endpoint desde el archivo `bulk-create.rest` o con el comando **curl**:
+
+```bash
+$ curl -X POST $BASE_API_URL/prod/api/people/bulk/ -H "Content-Type: application/json"
+
+### Ejemplo:
+$ curl -X POST https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/api/people/bulk/ -H "Content-Type: application/json"
+```
+
+2. Visualizar la data almacenada en la base de datos, llamar al siguiente endpoint desde el archivo `get-all.rest` o con el comando curl:
+
+```bash
+$ curl -X GET $BASE_API_URL/prod/api/people/ -H "Content-Type: application/json"
+
+### Ejemplo
+$ curl -X GET https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/api/people/ -H "Content-Type: application/json"
+```
+
+3. Se puede agregar nuevos persoanjes en la base de datos llamando al siguiente endpoint desde el archivo `create.rest` o con el comando curl:
+
+```bash
+$ curl -X POST $BASE_API_URL/prod/api/people/create/ -H "Content-Type: application/json" -d '{ "name": "Luke" }'
+
+### Ejemplo
+$ curl -X POST https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/api/people/create/ -H "Content-Type: application/json" -d '{ "name": "Luke" }'
+```
+
 Ver la documentacion en la siguiente ruta:
 
 ```bash
@@ -204,7 +233,7 @@ $ http://localhost:3000/docs
 $BASE_API_URL/prod/docs
 
 ### Ejemplo:
-https://ngahyu3u43.execute-api.us-east-1.amazonaws.com/prod/docs
+https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/docs
 ```
 
 Al final las pruebas borrar el serverless creado con el siguiente commando:
