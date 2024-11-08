@@ -24,7 +24,7 @@ API de prueba SWAPI: https://swapi.py4e.com/documentation
 - ✅ Pruebas unitarias
 - ✅ Uso de TypeScript
 - ✅ Documentación de uso
-- ❌ Documentación en Open API/Swagger
+- ✅ Documentación en Open API/Swagger
 - ✅ Desplegar sin errores en AWS con el comando deploy del framework serverless
 - ✅ Mayor complejidad de Integración
 - ✅ Uso de un framework (NestJS)
