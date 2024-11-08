@@ -143,7 +143,7 @@ $ curl -X GET http://localhost:3000/api/people/ -H "Content-Type: application/js
 $ curl -X POST http://localhost:3000/api/people/create/ -H "Content-Type: application/json" -d '{ "name": "Luke" }'
 ```
 
-## 👩‍💻 Pasos para testear el proyecto
+## 👩‍💻 Pasos para realizar pruebas del proyecto
 
 Ejecutar el siguiente comando desde la terminal:
 
