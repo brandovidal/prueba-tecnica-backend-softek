@@ -123,6 +123,26 @@ Instalar con el plugin de VSCode [REST Client](https://marketplace.visualstudio.
 └── (...)
 ```
 
+## 🎉 Pasos para usar el proyecto
+
+1. Primero poblar la base de datos con los personajes de Swapi API, llamar al siguiente endpoint desde el archivo `bulk-create.rest` o con el comando curl:
+
+```bash
+$ curl -X POST http://localhost:3000/api/people/bulk/ -H "Content-Type: application/json"
+```
+
+2. Visualizar la data almacenada en la base de datos, llamar al siguiente endpoint desde el archivo `get-all.rest` o con el comando curl:
+
+```bash
+$ curl -X GET http://localhost:3000/api/people/ -H "Content-Type: application/json"
+```
+
+3. Se puede agregar nuevos persoanjes en la base de datos llamando al siguiente endpoint desde el archivo `create.rest` o con el comando curl:
+
+```bash
+$ curl -X POST http://localhost:3000/api/people/create/ -H "Content-Type: application/json" -d '{ "name": "Luke" }'
+```
+
 ## 🚀 Pasos para desplegar en AWS (`prod`) el proyecto
 
 Desde la terminal ejecutar el siguiente comando para configurar las credenciales de AWS:
