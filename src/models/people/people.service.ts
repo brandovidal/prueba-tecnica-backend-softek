@@ -6,12 +6,18 @@ import { Person } from './entities/person.entity';
 
 import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
+import { BulkCreatePersonDto } from './dto/bulk-create-person.dto';
 
 @Injectable()
 export class PeopleService {
   constructor(
     @InjectRepository(Person) private repository: Repository<Person>,
   ) {}
+
+  async bulkCreate(createPersonDto: BulkCreatePersonDto[]) {
+    const data = this.repository.create(createPersonDto);
+    return await this.repository.save(data);
+  }
 
   async create(createPersonDto: CreatePersonDto) {
     const data = this.repository.create(createPersonDto);

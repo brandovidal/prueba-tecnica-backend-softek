@@ -1,2 +1,0 @@
-GET http://localhost:3000/qa/api/people/
-Content-Type: application/json

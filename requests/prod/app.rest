@@ -1,1 +1,1 @@
-GET {{$dotenv API_URL}}/prod/api/
+GET {{$dotenv BASE_API_URL}}/prod/api/

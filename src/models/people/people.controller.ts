@@ -8,31 +8,48 @@ import {
   Delete,
 } from '@nestjs/common';
 
+import { ConfigService } from '@nestjs/config';
 import { PeopleService } from './people.service';
 import { ApiService } from '../../providers/api/api.service';
-
-import { CreatePersonDto } from './dto/create-person.dto';
-import { UpdatePersonDto } from './dto/update-person.dto';
-import { PersonResponseDto } from './dto/person-response.dto';
 
 import { ResponseMessage } from '../../common/decorators/response-message.decorator';
 import { Entity } from '../../common/decorators/entity.decorator';
 
+import { CreatePersonDto } from './dto/create-person.dto';
+import { UpdatePersonDto } from './dto/update-person.dto';
+import { PersonResponseDto } from './dto/person-response.dto';
+import { BulkCreatePersonDto } from './dto/bulk-create-person.dto';
+
 @Controller('people')
 export class PeopleController {
+  private swapiApiUrl: string;
+
   constructor(
+    private readonly configService: ConfigService,
     private readonly apiService: ApiService,
     private readonly peopleService: PeopleService,
-  ) {}
+  ) {
+    this.swapiApiUrl = this.configService.get('SWAPI_API_URL');
+  }
 
-  @Post()
-  async create() {
-    const url = 'https://swapi.py4e.com/api/people/?format=json';
-    const people = await this.apiService.getData(url);
+  @Post('bulk')
+  async bulk() {
+    const url = `${this.swapiApiUrl}/api/people/?format=json`;
+    const data = await this.apiService.getData(url);
 
-    const createPersonDto: CreatePersonDto = people.results.map((person) => ({
+    const { results: people = [] } = data;
+    if (people.length === 0) {
+      return [];
+    }
+
+    const createPersonDto: BulkCreatePersonDto[] = people.map((person) => ({
       name: person.name,
     }));
+    return this.peopleService.bulkCreate(createPersonDto);
+  }
+
+  @Post('create')
+  async create(@Body() createPersonDto: CreatePersonDto) {
     return this.peopleService.create(createPersonDto);
   }
 

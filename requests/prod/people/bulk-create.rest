@@ -1,0 +1,2 @@
+POST {{$dotenv BASE_API_URL}}/prod/api/people/bulk
+Content-Type: application/json
