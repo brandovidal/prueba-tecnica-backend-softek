@@ -143,6 +143,14 @@ $ curl -X GET http://localhost:3000/api/people/ -H "Content-Type: application/js
 $ curl -X POST http://localhost:3000/api/people/create/ -H "Content-Type: application/json" -d '{ "name": "Luke" }'
 ```
 
+## 👩‍💻 Pasos para testear el proyecto
+
+Ejecutar el siguiente comando desde la terminal:
+
+```bash
+$ pnpm run test:e2e
+```
+
 ## 🚀 Pasos para desplegar en AWS (`prod`) el proyecto
 
 Desde la terminal ejecutar el siguiente comando para configurar las credenciales de AWS:
