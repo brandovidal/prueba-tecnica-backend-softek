@@ -8,12 +8,8 @@ plugins:
 
 build:
   esbuild:
-    # Path to the esbuild config file relative to the `serverless.yml` file
-    # configFile: ./esbuild.config.mjs
-    # Enable or Disable bundling the function code and dependencies. (Default: true)
     bundle: true
-    # Enable minifying function code. (Default: false)
-    minify: true
+    minify: false
     # NPM packages to not be bundled. Glob patterns are supported here.
     # external:
     #   - 'class-transformer'
@@ -33,13 +29,13 @@ build:
     # By default Framework will attempt to build and package all functions concurrently.
     # This property can bet set to a different number if you wish to limit the
     # concurrency of those operations.
-    # buildConcurrency: 3
+    buildConcurrency: 3
     # Enable or configure sourcemaps, can be set to true or to an object with further configuration.
-    # sourcemap:
-    #   # The sourcemap type to use, options are (inline, linked, or external)
-    #   type: linked
-    #   # Whether to set the NODE_OPTIONS on functions to enable sourcemaps on Lambda
-    #   setNodeOptions: true
+    sourcemap:
+      # The sourcemap type to use, options are (inline, linked, or external)
+      type: external
+      # Whether to set the NODE_OPTIONS on functions to enable sourcemaps on Lambda
+      setNodeOptions: true
 
 package:
   individually: true
@@ -73,8 +69,18 @@ functions:
       - http:
           method: ANY
           path: /
-          cors: true
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
       - http:
           method: ANY
           path: '{proxy+}'
-          cors: true
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - Authorization
+            allowCredentials: true
