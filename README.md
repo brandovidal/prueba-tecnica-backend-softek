@@ -21,7 +21,7 @@ API de prueba SWAPI: https://swapi.py4e.com/documentation
 
 ## ➕ Puntos Bonus:
 
-- ❌ Pruebas unitarias
+- ✅ Pruebas unitarias
 - ✅ Uso de TypeScript
 - ✅ Documentación de uso
 - ❌ Documentación en Open API/Swagger
@@ -143,9 +143,15 @@ $ curl -X GET http://localhost:3000/api/people/ -H "Content-Type: application/js
 $ curl -X POST http://localhost:3000/api/people/create/ -H "Content-Type: application/json" -d '{ "name": "Luke" }'
 ```
 
-## 👩‍💻 Pasos para realizar pruebas del proyecto
+## 🐛 Pasos para realizar pruebas del proyecto
 
-Ejecutar el siguiente comando desde la terminal:
+Pruebas unitarias
+
+```bash
+$ pnpm run test
+```
+
+Pruebas e2e
 
 ```bash
 $ pnpm run test:e2e
