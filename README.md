@@ -97,16 +97,16 @@ $ pnpm run deps
 $ pnpm run dev
 ```
 
-> ⚠️ Importante: tener declaradas las siguientes variables de entorno:
+> ⚠️ Importante: tener declaradas las siguientes variables de entorno, revisar el archivo `.env.example`.
 
-- `PORT`: Puerto del servidor
-- `DATABASE_HOST`: Endpoint de la base de datos
-- `DATABASE_PORT`: Puerto de la base de datos
-- `DATABASE_ROOT_PASSWORD`: Contraseña del usuario root de la base de datos
-- `DATABASE_NAME`: Nombre de la base de datos
-- `DATABASE_USER`: Nombre del usuario de la base de datos
-- `DATABASE_PASSWORD`: Contraseña del usuario de la base de datos
-- `SWAPI_API_URL`: URL de la API de Star Wars
+- `PORT`: Puerto del servidor. Ejemplo: `3000`
+- `DATABASE_HOST`: Endpoint de la base de datos. Ejemplo: `localhost`
+- `DATABASE_PORT`: Puerto de la base de datos. Ejemplo: `3306`
+- `DATABASE_ROOT_PASSWORD`: Contraseña del usuario root de la base de datos. Ejemplo: `root`
+- `DATABASE_NAME`: Nombre de la base de datos. Ejemplo: `softek_db`
+- `DATABASE_USER`: Nombre del usuario de la base de datos. Ejemplo: `superadmin`
+- `DATABASE_PASSWORD`: Contraseña del usuario de la base de datos. Ejemplo: `Admin123456*`
+- `SWAPI_API_URL`: URL de la API de Star Wars. Ejemplo: `https://swapi.py4e.com/api`
 
 > 🧾 Nota: Se pueden usar los endpoints declarados en la carpeta `requests/`
 
@@ -181,7 +181,7 @@ $ pnpm run deploy
 
 Despues de desplegar el proyecto, agregar el endpoint (la variable `BASE_API_URL`) en el archivo .env. Tener en consideración que puede demorar unos segundos en reflejarse el nuevo endpoint.
 
-- `BASE_API_URL`: URL de la API en AWS
+- `BASE_API_URL`: URL de la API en AWS. Ejemplo: `https://ngahyu3u43.execute-api.us-east-1.amazonaws.com/prod/docs`
 
 ```css
 ├── requests/
@@ -192,6 +192,19 @@ Despues de desplegar el proyecto, agregar el endpoint (la variable `BASE_API_URL
 |   |   ├── get-all.rest
 |   ├── app.rest
 └── (...)
+```
+
+Ver la documentacion en la siguiente ruta:
+
+```bash
+## Modo dev
+$ http://localhost:3000/docs
+
+## Modo prod
+$BASE_API_URL/prod/docs
+
+### Ejemplo:
+https://ngahyu3u43.execute-api.us-east-1.amazonaws.com/prod/docs
 ```
 
 Al final las pruebas borrar el serverless creado con el siguiente commando:
