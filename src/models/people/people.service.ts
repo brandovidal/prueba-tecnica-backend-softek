@@ -1,7 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
+
 import { Person } from './entities/person.entity';
 
 import { CreatePersonDto } from './dto/create-person.dto';
@@ -12,6 +16,7 @@ import { BulkCreatePersonDto } from './dto/bulk-create-person.dto';
 export class PeopleService {
   constructor(
     @InjectRepository(Person) private repository: Repository<Person>,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
   async bulkCreate(createPersonDto: BulkCreatePersonDto[]) {
@@ -25,7 +30,15 @@ export class PeopleService {
   }
 
   async findAll() {
-    return await this.repository.find();
+    const people = await this.cacheManager.get<string>('people');
+    if (people) {
+      return people;
+    }
+
+    const data = await this.repository.find();
+
+    await this.cacheManager.set('people', data);
+    return data;
   }
 
   async findOne(id: number) {
