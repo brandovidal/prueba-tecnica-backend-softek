@@ -30,8 +30,8 @@ export class PeopleService {
   }
 
   async findAll() {
-    const people = await this.cacheManager.get<string>('people');
-    if (people) {
+    const people = (await this.cacheManager.get<string>('people')) ?? [];
+    if (people && people?.length > 0) {
       return people;
     }
 

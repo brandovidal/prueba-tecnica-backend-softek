@@ -1,2 +1,2 @@
-GET {{$dotenv BASE_API_URL}}/prod/api/people/
+GET {{$dotenv BASE_API_URL}}/prod/api/people/historial
 Content-Type: application/json
