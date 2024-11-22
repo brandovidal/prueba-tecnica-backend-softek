@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Logger,
 } from '@nestjs/common';
 
 import { ConfigService } from '@nestjs/config';
@@ -19,10 +20,13 @@ import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
 import { PersonResponseDto } from './dto/person-response.dto';
 import { BulkCreatePersonDto } from './dto/bulk-create-person.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('People')
 @Controller('people')
 export class PeopleController {
   private swapiApiUrl: string;
+  private readonly logger = new Logger(PeopleController.name);
 
   constructor(
     private readonly configService: ConfigService,
@@ -36,9 +40,9 @@ export class PeopleController {
   @ResponseMessage('People has been successfully created')
   async bulk() {
     const url = `${this.swapiApiUrl}/api/people/?format=json`;
-    const data = await this.apiService.getData(url);
+    const responseData = await this.apiService.getData(url);
 
-    const { results: people = [] } = data;
+    const { results: people = [] } = responseData;
     if (people.length === 0) {
       return [];
     }
@@ -46,20 +50,29 @@ export class PeopleController {
     const createPersonDto: BulkCreatePersonDto[] = people.map((person) => ({
       name: person.name,
     }));
-    return this.peopleService.bulkCreate(createPersonDto);
+    const data = await this.peopleService.bulkCreate(createPersonDto);
+    this.logger.log('People has been successfully created', data);
+
+    return data;
   }
 
   @Post('almacenar')
   @ResponseMessage('The person has been successfully created')
   async create(@Body() createPersonDto: CreatePersonDto) {
-    return this.peopleService.create(createPersonDto);
+    const data = await this.peopleService.create(createPersonDto);
+    this.logger.log('The person has been successfully created', data);
+
+    return data;
   }
 
   @Get('historial')
   @Entity(PersonResponseDto)
   @ResponseMessage('People data successfully')
   async findAll() {
-    return await this.peopleService.findAll();
+    const data = await this.peopleService.findAll();
+    this.logger.log('People data successfully', data);
+
+    return data;
   }
 
   @Get(':id')
