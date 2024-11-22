@@ -128,19 +128,19 @@ Instalar con el plugin de VSCode [REST Client](https://marketplace.visualstudio.
 1. Primero poblar la base de datos con los personajes de Swapi API, llamar al siguiente endpoint desde el archivo `bulk-create.rest` o con el comando **curl**:
 
 ```bash
-$ curl -X POST http://localhost:3000/api/people/bulk/ -H "Content-Type: application/json"
+$ curl -X POST http://localhost:3000/api/people/fusionados -H "Content-Type: application/json"
 ```
 
 2. Visualizar la data almacenada en la base de datos, llamar al siguiente endpoint desde el archivo `get-all.rest` o con el comando curl:
 
 ```bash
-$ curl -X GET http://localhost:3000/api/people/ -H "Content-Type: application/json"
+$ curl -X GET http://localhost:3000/api/people/historial -H "Content-Type: application/json"
 ```
 
 3. Se puede agregar nuevos persoanjes en la base de datos llamando al siguiente endpoint desde el archivo `create.rest` o con el comando curl:
 
 ```bash
-$ curl -X POST http://localhost:3000/api/people/create/ -H "Content-Type: application/json" -d '{ "name": "Luke" }'
+$ curl -X POST http://localhost:3000/api/people/almacenar -H "Content-Type: application/json" -d '{ "name": "Luke" }'
 ```
 
 ## 🐛 Pasos para realizar pruebas del proyecto
@@ -199,28 +199,28 @@ O probar con CURL
 1. Primero poblar la base de datos con los personajes de Swapi API, llamar al siguiente endpoint desde el archivo `bulk-create.rest` o con el comando **curl**:
 
 ```bash
-$ curl -X POST $BASE_API_URL/prod/api/people/bulk/ -H "Content-Type: application/json"
+$ curl -X POST $BASE_API_URL/prod/api/people/fusionados -H "Content-Type: application/json"
 
 ### Ejemplo:
-$ curl -X POST https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/api/people/bulk/ -H "Content-Type: application/json"
+$ curl -X POST https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/api/people/fusionados -H "Content-Type: application/json"
 ```
 
 2. Visualizar la data almacenada en la base de datos, llamar al siguiente endpoint desde el archivo `get-all.rest` o con el comando curl:
 
 ```bash
-$ curl -X GET $BASE_API_URL/prod/api/people/ -H "Content-Type: application/json"
+$ curl -X GET $BASE_API_URL/prod/api/people/historial -H "Content-Type: application/json"
 
 ### Ejemplo
-$ curl -X GET https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/api/people/ -H "Content-Type: application/json"
+$ curl -X GET https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/api/people/historial -H "Content-Type: application/json"
 ```
 
 3. Se puede agregar nuevos persoanjes en la base de datos llamando al siguiente endpoint desde el archivo `create.rest` o con el comando curl:
 
 ```bash
-$ curl -X POST $BASE_API_URL/prod/api/people/create/ -H "Content-Type: application/json" -d '{ "name": "Luke" }'
+$ curl -X POST $BASE_API_URL/prod/api/people/almacenar -H "Content-Type: application/json" -d '{ "name": "Luke" }'
 
 ### Ejemplo
-$ curl -X POST https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/api/people/create/ -H "Content-Type: application/json" -d '{ "name": "Luke" }'
+$ curl -X POST https://p92xfml1ml.execute-api.us-east-1.amazonaws.com/prod/api/people/almacenar -H "Content-Type: application/json" -d '{ "name": "Luke" }'
 ```
 
 Ver la documentacion en la siguiente ruta:

@@ -1,2 +1,2 @@
-GET http://localhost:3000/api/people/
+GET http://localhost:3000/api/people/historial
 Content-Type: application/json

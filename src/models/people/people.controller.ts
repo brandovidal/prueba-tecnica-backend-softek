@@ -32,7 +32,7 @@ export class PeopleController {
     this.swapiApiUrl = this.configService.get('SWAPI_API_URL');
   }
 
-  @Post('bulk')
+  @Post('fusionados')
   @ResponseMessage('People has been successfully created')
   async bulk() {
     const url = `${this.swapiApiUrl}/api/people/?format=json`;
@@ -49,13 +49,13 @@ export class PeopleController {
     return this.peopleService.bulkCreate(createPersonDto);
   }
 
-  @Post('create')
+  @Post('almacenar')
   @ResponseMessage('The person has been successfully created')
   async create(@Body() createPersonDto: CreatePersonDto) {
     return this.peopleService.create(createPersonDto);
   }
 
-  @Get()
+  @Get('historial')
   @Entity(PersonResponseDto)
   @ResponseMessage('People data successfully')
   async findAll() {
@@ -74,7 +74,7 @@ export class PeopleController {
     return this.peopleService.update(Number(id), updatePersonDto);
   }
 
-  @Delete(':id')
+  @Delete('eliminar/:id')
   @ResponseMessage('Deleted person successfully')
   remove(@Param('id') id: string) {
     return this.peopleService.remove(Number(id));

@@ -1,2 +1,2 @@
-POST {{$dotenv BASE_API_URL}}/prod/api/people/bulk
+POST {{$dotenv BASE_API_URL}}/prod/api/people/fusionados
 Content-Type: application/json

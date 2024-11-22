@@ -1,2 +1,2 @@
-POST http://localhost:3000/api/people/bulk
+POST http://localhost:3000/api/people/fusionados
 Content-Type: application/json
