@@ -14,5 +14,5 @@ export class Person {
   name: string;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  deletedAt: Date | null;
 }
