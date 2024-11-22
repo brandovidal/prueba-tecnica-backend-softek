@@ -17,11 +17,12 @@
     "deploy": "pnpm run build && serverless deploy --stage prod",
     "deploy:remove": "serverless remove --stage prod",
     "deploy:package": "serverless package --stage prod",
-    "test": "pnpm run test:unit && pnpm run test:e2e",
-    "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "test:unit": "jest --all",
-    "test:e2e": "jest --config ./test/jest-e2e.json --detectOpenHandles --all",
+    "test": "vitest --project unit --project e2e",
+    "test:ui": "vitest --project unit --project e2e --ui",
+    "test:ci": "vitest --project unit --project e2e --run",
+    "test:cov": "pnpm run test:unit --coverage",
+    "test:unit": "vitest --project unit",
+    "test:e2e": "vitest --project e2e",
     "db:init": "docker compose up -d",
     "db:stop": "docker compose down"
   },
@@ -50,6 +51,7 @@
     "@nestjs/cli": "10.0.0",
     "@nestjs/schematics": "10.0.0",
     "@nestjs/testing": "10.0.0",
+    "@swc/core": "1.9.2",
     "@types/aws-lambda": "8.10.145",
     "@types/express": "5.0.0",
     "@types/jest": "29.5.2",
@@ -57,6 +59,8 @@
     "@types/supertest": "6.0.0",
     "@typescript-eslint/eslint-plugin": "8.0.0",
     "@typescript-eslint/parser": "8.0.0",
+    "@vitest/coverage-v8": "2.1.5",
+    "@vitest/ui": "2.1.5",
     "eslint": "8.57.1",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-prettier": "5.0.1",
@@ -70,23 +74,9 @@
     "ts-loader": "9.4.3",
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.2.0",
-    "typescript": "5.1.3"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      ".+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "typescript": "5.1.3",
+    "unplugin-swc": "1.5.1",
+    "vite-tsconfig-paths": "5.1.3",
+    "vitest": "2.1.5"
   }
 }

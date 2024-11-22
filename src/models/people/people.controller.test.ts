@@ -10,16 +10,18 @@ import { Person } from './entities/person.entity';
 import { HttpService } from '@nestjs/axios';
 import { CreatePersonDto } from './dto/create-person.dto';
 
+import { vi, beforeEach, describe, expect, it } from 'vitest';
+
 const mockPeopleService = {
-  create: jest.fn(),
-  bulk: jest.fn(),
-  findAll: jest.fn(),
-  findOne: jest.fn(),
-  update: jest.fn(),
-  remove: jest.fn(),
+  create: vi.fn(),
+  bulk: vi.fn(),
+  findAll: vi.fn(),
+  findOne: vi.fn(),
+  update: vi.fn(),
+  remove: vi.fn(),
 };
 const mockApiService = {
-  getData: jest.fn(),
+  getData: vi.fn(),
 };
 
 describe('PeopleController', () => {
@@ -58,7 +60,7 @@ describe('PeopleController', () => {
         deletedAt: null,
       } as Person;
 
-      jest.spyOn(mockPeopleService, 'create').mockReturnValue(person);
+      vi.spyOn(mockPeopleService, 'create').mockReturnValue(person);
 
       // act
       const result = await controller.create(createPersonDto);
@@ -78,7 +80,7 @@ describe('PeopleController', () => {
       } as Person;
       const people = [person];
 
-      jest.spyOn(mockPeopleService, 'findAll').mockReturnValue(people);
+      vi.spyOn(mockPeopleService, 'findAll').mockReturnValue(people);
 
       // act
       const result = await controller.findAll();
